@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: c31cdc85c4a760e40a62328fd81f7029
+guid: fd7f593719b09ce4082ada2ee2e4bb34
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4751881938678664134
-    second: spr_Blue_slime_hurt_0
-  - first:
-      213: -4392857921056006237
-    second: spr_Blue_slime_hurt_1
-  - first:
-      213: -2789353311618695389
-    second: spr_Blue_slime_hurt_2
-  - first:
-      213: -9141101878117254011
-    second: spr_Blue_slime_hurt_3
+      213: -7876781513592612874
+    second: Bush1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Blue_slime_hurt_0
+      name: Bush1_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 22
-        width: 19
-        height: 17
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cb4989527312f140800000000000000
-      internalID: 4751881938678664134
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_Blue_slime_hurt_1
-      rect:
-        serializedVersion: 2
-        x: 87
-        y: 22
-        width: 19
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3af12b2cefe6903c0800000000000000
-      internalID: -4392857921056006237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_Blue_slime_hurt_2
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 22
-        width: 19
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 32f78e311f93a49d0800000000000000
-      internalID: -2789353311618695389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_Blue_slime_hurt_3
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 22
-        width: 19
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58c3a230648442180800000000000000
-      internalID: -9141101878117254011
+      spriteID: 6f7d2f442fc00b290800000000000000
+      internalID: -7876781513592612874
       vertices: []
       indices: 
       edges: []
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      spr_Blue_slime_hurt_0: 4751881938678664134
-      spr_Blue_slime_hurt_1: -4392857921056006237
-      spr_Blue_slime_hurt_2: -2789353311618695389
-      spr_Blue_slime_hurt_3: -9141101878117254011
+      Bush1_0: -7876781513592612874
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
