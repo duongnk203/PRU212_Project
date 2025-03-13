@@ -12,34 +12,45 @@ public class TransparentDetection : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Tilemap tilemap;
 
-    private void Awake() {
+    private void Awake()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         tilemap = GetComponent<Tilemap>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.GetComponent<PlayerController>()) {
-            if (spriteRenderer) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>())
+        {
+            if (spriteRenderer)
+            {
                 StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, transparencyAmount));
-            } else if (tilemap) {
+            }
+            else if (tilemap)
+            {
                 StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, transparencyAmount));
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
+    private void OnTriggerExit2D(Collider2D other)
+    {
         if (other.gameObject.GetComponent<PlayerController>())
         {
-            if (spriteRenderer) {
+            if (spriteRenderer)
+            {
                 StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));
-            } else if (tilemap) {
+            }
+            else if (tilemap)
+            {
                 StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, 1f));
             }
         }
     }
 
-    private IEnumerator FadeRoutine(SpriteRenderer spriteRenderer, float fadeTime, float startValue, float targetTransparency) {
-        float elapsedTime = 0;     
+    private IEnumerator FadeRoutine(SpriteRenderer spriteRenderer, float fadeTime, float startValue, float targetTransparency)
+    {
+        float elapsedTime = 0;
         while (elapsedTime < fadeTime)
         {
             elapsedTime += Time.deltaTime;
