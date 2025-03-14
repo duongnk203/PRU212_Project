@@ -3436,6 +3436,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 424676948386458717, guid: b26b486e5a1b0714bb5e12f5ba90644a, type: 3}
   m_PrefabInstance: {fileID: 2113633258}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1115827257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115827258}
+  m_Layer: 0
+  m_Name: SlashSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1115827258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115827257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.86, y: 1.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470160526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1127266282
 GameObject:
   m_ObjectHideFlags: 0
@@ -6697,6 +6728,7 @@ MonoBehaviour:
   moveSpeed: 4
   dashSpeed: 4
   myTrailRenderer: {fileID: 1389847718}
+  weaponCollider: {fileID: 1585573417}
 --- !u!212 &1279293789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16220,7 +16252,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1115827258}
   m_Father: {fileID: 1279293790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1470160527
@@ -16235,7 +16268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b204a3c6cabb914fa2d28042eb85554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentActiveWeapon: {fileID: 0}
 --- !u!1001 &1512090702
 PrefabInstance:
   m_ObjectHideFlags: 0

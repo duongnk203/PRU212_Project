@@ -16,6 +16,8 @@ public class ActiveInventory : MonoBehaviour
     private void Start()
     {
         playerControls.Inventory.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
+
+        ToggleActiveHighlight(0);
     }
 
     private void OnEnable()
@@ -44,6 +46,25 @@ public class ActiveInventory : MonoBehaviour
 
     private void ChangeActiveWeapon()
     {
-        Debug.Log(transform.GetChild(activeSlotIndexNum).GetComponent<InventorySlot>().GetWeaponInfo().weaponPrefab.name);
+
+        if (ActiveWeapon.Instance.CurrentActiveWeapon != null)
+        {
+            Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
+        }
+
+        if (!transform.GetChild(activeSlotIndexNum).GetComponentInChildren<InventorySlot>())
+        {
+            ActiveWeapon.Instance.WeaponNull();
+            return;
+        }
+
+        GameObject weaponToSpawn = transform.GetChild(activeSlotIndexNum).
+        GetComponentInChildren<InventorySlot>().GetWeaponInfo().weaponPrefab;
+
+        GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
+
+        newWeapon.transform.parent = ActiveWeapon.Instance.transform;
+
+        ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }
 }
