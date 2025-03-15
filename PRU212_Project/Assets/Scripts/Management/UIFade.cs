@@ -10,8 +10,10 @@ public class UIFade : Singleton<UIFade>
 
     private IEnumerator fadeRoutine;
 
-    public void FadeToBlack() {
-        if (fadeRoutine != null) {
+    public void FadeToBlack()
+    {
+        if (fadeRoutine != null)
+        {
             StopCoroutine(fadeRoutine);
         }
 
@@ -19,17 +21,19 @@ public class UIFade : Singleton<UIFade>
         StartCoroutine(fadeRoutine);
     }
 
-    public void FadeToClear() {
+    public void FadeToClear()
+    {
         if (fadeRoutine != null)
-            {
-                StopCoroutine(fadeRoutine);
-            }
+        {
+            StopCoroutine(fadeRoutine);
+        }
 
-            fadeRoutine = FadeRoutine(0);
-            StartCoroutine(fadeRoutine);
+        fadeRoutine = FadeRoutine(0);
+        StartCoroutine(fadeRoutine);
     }
 
-    private IEnumerator FadeRoutine(float targetAlpha) {
+    private IEnumerator FadeRoutine(float targetAlpha)
+    {
         while (!Mathf.Approximately(fadeScreen.color.a, targetAlpha))
         {
             float alpha = Mathf.MoveTowards(fadeScreen.color.a, targetAlpha, fadeSpeed * Time.deltaTime);

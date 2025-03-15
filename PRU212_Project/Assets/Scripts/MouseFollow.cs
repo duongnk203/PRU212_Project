@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MouseFollow : MonoBehaviour
 {
-    private void Update() {
+    private void Update()
+    {
         FaceMouse();
     }
 
-    private void FaceMouse() {
+    private void FaceMouse()
+    {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 

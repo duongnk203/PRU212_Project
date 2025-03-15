@@ -1,17 +1,20 @@
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Knockback : MonoBehaviour
 {
     public bool GettingKnockedBack { get; private set; }
-    [SerializeField] private float knockbackTime = .2f;
+
+    [SerializeField] private float knockBackTime = .2f;
+
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     public void GetKnockedBack(Transform damageSource, float knockBackThrust)
     {
         GettingKnockedBack = true;
@@ -19,11 +22,11 @@ public class Knockback : MonoBehaviour
         rb.AddForce(difference, ForceMode2D.Impulse);
         StartCoroutine(KnockRoutine());
     }
+
     private IEnumerator KnockRoutine()
     {
-        yield return new WaitForSeconds(knockbackTime);
+        yield return new WaitForSeconds(knockBackTime);
         rb.linearVelocity = Vector2.zero;
         GettingKnockedBack = false;
     }
 }
-
