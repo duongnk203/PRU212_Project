@@ -15351,10 +15351,6 @@ PrefabInstance:
       propertyPath: AnimatedTarget
       value: 
       objectReference: {fileID: 1532648432}
-    - target: {fileID: 5938431113674402427, guid: fc39e585f8dcff148851ee10e2cc535b, type: 3}
-      propertyPath: HashOfParent.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
