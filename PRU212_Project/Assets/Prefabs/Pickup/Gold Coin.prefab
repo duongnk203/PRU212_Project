@@ -189,6 +189,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d976d00c3b08d414dafd307cc028c76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpDistance: 5
+  pickUpDistance: 4
   accelartionRate: 0.4
   moveSpeed: 2
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.0449371
+      value: 0.018188477
+      inSlope: -1.7967213
+      outSlope: -1.7967213
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10147945
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightY: 1.5
+  popDuration: 0.5
