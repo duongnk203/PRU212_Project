@@ -1,5 +1,5 @@
 using System.Collections;
-using Unity.Cinemachine;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -18,14 +18,16 @@ public class PlayerHealth : MonoBehaviour
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();
     }
+
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         EnemyAI enemy = other.gameObject.GetComponent<EnemyAI>();
+
         if (enemy && canTakeDamage)
         {
             TakeDamage(1);
@@ -47,4 +49,3 @@ public class PlayerHealth : MonoBehaviour
         canTakeDamage = true;
     }
 }
-
