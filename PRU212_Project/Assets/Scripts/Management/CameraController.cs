@@ -5,7 +5,6 @@ using Unity.Cinemachine;
 
 public class CameraController : Singleton<CameraController>
 {
-    [System.Obsolete]
     private CinemachineCamera cinemachineVirtualCamera;
 
     public void SetPlayerCameraFollow()
