@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 9d4297eec15f4eb4da56ddfa1b577ec7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - goldCoin: {fileID: 2214667261341330073, guid: 3d3cbe1538decad4a954d6ce2c829562, type: 3}
+  - healthGlobe: {fileID: 2214667261341330073, guid: 3860f17a51be6464d96cfb0def487152, type: 3}
+  - staminaGlobe: {fileID: 2214667261341330073, guid: c286b6cf935a0c24bb20b5ae0a815bbb, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
