@@ -12,19 +12,20 @@ GameObject:
   - component: {fileID: 4755485476974873274}
   - component: {fileID: 6796375901268992396}
   - component: {fileID: 3307658704882298125}
-  - component: {fileID: 7827623862644832247}
   - component: {fileID: 3203155885131997512}
   - component: {fileID: 5589622116700724716}
   - component: {fileID: 664372729557874531}
   - component: {fileID: 2570449584753001320}
   - component: {fileID: 8547439497790594249}
+  - component: {fileID: -2954768547583387330}
+  - component: {fileID: 3545175485221737954}
   m_Layer: 0
   m_Name: Blue Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &424676948386458717
 Transform:
   m_ObjectHideFlags: 0
@@ -159,18 +160,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7827623862644832247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6855709025824304560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4af21617261ae234fb0d4d1f414c6e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3203155885131997512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   deathVFXPrefab: {fileID: 6645696641314126307, guid: a1a41b06522d0b440aab2c14c411198b, type: 3}
+  knockBackThrust: 15
 --- !u!114 &2570449584753001320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0724cac278be767449e78ead8cc8c7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackTime: 0.2
+  knockBackTime: 0.2
 --- !u!114 &8547439497790594249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,3 +237,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteFlashMat: {fileID: 2100000, guid: e0ba47ffd47653147a6be9beb807e19f, type: 2}
   restoreDefaultMatTime: 0.2
+--- !u!114 &-2954768547583387330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6855709025824304560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4297eec15f4eb4da56ddfa1b577ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldCoin: {fileID: 2214667261341330073, guid: 3d3cbe1538decad4a954d6ce2c829562, type: 3}
+  healthGlobe: {fileID: 2214667261341330073, guid: 3860f17a51be6464d96cfb0def487152, type: 3}
+  staminaGlobe: {fileID: 2214667261341330073, guid: c286b6cf935a0c24bb20b5ae0a815bbb, type: 3}
+--- !u!114 &3545175485221737954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6855709025824304560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af21617261ae234fb0d4d1f414c6e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roamChangeDirFloat: 2
+  attackRange: 5
+  enemyType: {fileID: 0}
+  attackCooldown: 2
+  stopMovingWhileAttacking: 0
