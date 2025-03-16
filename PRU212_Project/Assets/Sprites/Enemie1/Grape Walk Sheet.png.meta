@@ -1,21 +1,9 @@
 fileFormatVersion: 2
-guid: 5372957932edbfd4e9d06990c1645841
+guid: 2124433e307f28e43afe8860d9a26755
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 3341093529323198379
-    second: spr_player_right_hit_0
-  - first:
-      213: -6375839425098158413
-    second: spr_player_right_hit_1
-  - first:
-      213: -7931111939729201523
-    second: spr_player_right_hit_2
-  - first:
-      213: 5922747424731439311
-    second: spr_player_right_hit_3
+  internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -79,7 +67,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -89,10 +77,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -102,14 +89,25 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_player_right_hit_0
+      name: Grape Walk Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,19 +117,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba75aa0fcd2fd5e20800000000000000
-      internalID: 3341093529323198379
+      spriteID: ad8b9786e9de3d242afc46ce15ad6434
+      internalID: -1717010441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_hit_1
+      name: Grape Walk Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -141,19 +138,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3bee712d2d77487a0800000000000000
-      internalID: -6375839425098158413
+      spriteID: 552bc981f7fd51b4caf24db718902773
+      internalID: 1423244467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_hit_2
+      name: Grape Walk Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -163,19 +159,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d86e49e26b70fe190800000000000000
-      internalID: -7931111939729201523
+      spriteID: 0af277f457c1c5842a30e935df61dbdb
+      internalID: 1592376746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_player_right_hit_3
+      name: Grape Walk Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -185,35 +180,31 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fc02a791763d13250800000000000000
-      internalID: 5922747424731439311
+      spriteID: b0ca9be7b340fab44a697e8d6aa88bb2
+      internalID: 986611110
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
-    customData: 
     physicsShape: []
     bones: []
-    spriteID: 89a6730aa6eb4f44eb4953107901916d
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    spriteCustomMetadata:
-      entries: []
     nameFileIdTable:
-      spr_player_right_hit_0: 3341093529323198379
-      spr_player_right_hit_1: -6375839425098158413
-      spr_player_right_hit_2: -7931111939729201523
-      spr_player_right_hit_3: 5922747424731439311
+      Grape Walk Sheet_1: 1423244467
+      Grape Walk Sheet_2: 1592376746
+      Grape Walk Sheet_0: -1717010441
+      Grape Walk Sheet_3: 986611110
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
