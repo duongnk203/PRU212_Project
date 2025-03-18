@@ -41,4 +41,16 @@ public class EconomyManager : Singleton<EconomyManager>
     {
         return currentGold;
     }
+    public void SpendGold(int amount)
+    {
+        if (currentGold >= amount)
+        {
+            currentGold -= amount;
+            UpdateGoldUI();
+        }
+        else
+        {
+            Debug.Log("Không đủ vàng để thực hiện giao dịch!");
+        }
+    }
 }
