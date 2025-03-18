@@ -65,4 +65,10 @@ public class EnemyHealth : MonoBehaviour
 
         Destroy(gameObject);
     }
+    public void IncreaseHealth(int amount)
+    {
+        currentHealth += amount;  // Tăng máu hiện tại
+        startingHealth += amount; // Cập nhật máu tối đa để enemy có thể hồi phục trong tương lai
+    }
+
 }

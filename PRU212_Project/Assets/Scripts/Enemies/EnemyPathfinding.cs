@@ -54,4 +54,8 @@ public class EnemyPathfinding : MonoBehaviour
     {
         moveDir = Vector3.zero;
     }
+    public void IncreaseSpeed(float amount)
+    {
+        moveSpeed += amount;
+    }
 }

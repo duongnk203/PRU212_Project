@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,8 +8,9 @@ using UnityEngine;
 public class ActiveInventory : Singleton<ActiveInventory>
 {
     private int activeSlotIndexNum = 0; // Chỉ số của slot đang được kích hoạt
-
     private PlayerControls playerControls; // Điều khiển bàn phím của người chơi
+
+    private Coroutine rentalCoroutine; // Coroutine để kiểm soát thời gian thuê vũ khí
 
     /// <summary>
     /// Khởi tạo Singleton và hệ thống điều khiển.
@@ -51,7 +51,46 @@ public class ActiveInventory : Singleton<ActiveInventory>
     /// <param name="numValue">Số slot vũ khí được chọn.</param>
     private void ToggleActiveSlot(int numValue)
     {
-        ToggleActiveHighlight(numValue - 1); // Chuyển đổi vũ khí dựa vào chỉ số slot
+        int index = numValue - 1; // Chuyển về chỉ số trong danh sách (bắt đầu từ 0)
+
+        if (index == 0)
+        {
+            ToggleActiveHighlight(index); // Vũ khí mặc định, không cần thuê
+        }
+        else
+        {
+            int rentalCost = GetWeaponRentalCost(index);
+            int playerGold = EconomyManager.Instance.GetGold(); // Lấy số vàng từ EconomyManager
+
+            if (playerGold >= rentalCost)
+            {
+                EconomyManager.Instance.SpendGold(rentalCost); // Trừ vàng trong EconomyManager
+                Debug.Log($"Đã thuê vũ khí {index + 1} với giá {rentalCost} vàng. Số vàng còn lại: {EconomyManager.Instance.GetGold()}");
+
+                ToggleActiveHighlight(index);
+
+                if (rentalCoroutine != null)
+                {
+                    StopCoroutine(rentalCoroutine); // Nếu đang thuê vũ khí khác, hủy bộ đếm trước
+                }
+
+                rentalCoroutine = StartCoroutine(RentalWeaponTimer());
+            }
+            else
+            {
+                Debug.Log($"Không đủ vàng để thuê vũ khí {index + 1}. Cần {rentalCost} vàng.");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Xác định chi phí thuê vũ khí dựa trên chỉ số slot.
+    /// </summary>
+    private int GetWeaponRentalCost(int index)
+    {
+        if (index == 1) return 5;  // Vũ khí 2 giá 5 gold
+        if (index == 2) return 10; // Vũ khí 3 giá 10 gold
+        return 0; // Mặc định vũ khí đầu tiên miễn phí
     }
 
     /// <summary>
@@ -62,16 +101,13 @@ public class ActiveInventory : Singleton<ActiveInventory>
     {
         activeSlotIndexNum = indexNum;
 
-        // Ẩn highlight của tất cả slot vũ khí trong kho đồ
         foreach (Transform inventorySlot in this.transform)
         {
             inventorySlot.GetChild(0).gameObject.SetActive(false);
         }
 
-        // Hiển thị highlight cho slot đang được chọn
         this.transform.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);
 
-        // Thay đổi vũ khí tương ứng với slot vừa chọn
         ChangeActiveWeapon();
     }
 
@@ -80,29 +116,34 @@ public class ActiveInventory : Singleton<ActiveInventory>
     /// </summary>
     private void ChangeActiveWeapon()
     {
-        // Nếu đã có vũ khí được trang bị, hủy bỏ nó trước khi thay vũ khí mới
         if (ActiveWeapon.Instance.CurrentActiveWeapon != null)
         {
             Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
         }
 
-        // Lấy thông tin vũ khí từ slot kho đồ hiện tại
         Transform childTransform = transform.GetChild(activeSlotIndexNum);
         InventorySlot inventorySlot = childTransform.GetComponentInChildren<InventorySlot>();
         WeaponInfo weaponInfo = inventorySlot.GetWeaponInfo();
 
-        // Nếu slot hiện tại không chứa vũ khí, đặt trạng thái vũ khí null
         if (weaponInfo == null)
         {
             ActiveWeapon.Instance.WeaponNull();
             return;
         }
 
-        // Sinh vũ khí mới và đặt làm vũ khí hiện tại
         GameObject weaponToSpawn = weaponInfo.weaponPrefab;
         GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform);
-
-        // Gán vũ khí mới vào ActiveWeapon
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
+    }
+
+    /// <summary>
+    /// Bộ đếm thời gian thuê vũ khí (10 giây).
+    /// Sau thời gian này, vũ khí sẽ bị gỡ bỏ và quay về vũ khí mặc định.
+    /// </summary>
+    private IEnumerator RentalWeaponTimer()
+    {
+        yield return new WaitForSeconds(10f);
+        Debug.Log("Hết thời gian thuê vũ khí. Quay về vũ khí mặc định.");
+        ToggleActiveHighlight(0); // Trở về vũ khí mặc định
     }
 }
