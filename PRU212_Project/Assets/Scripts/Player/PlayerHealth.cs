@@ -18,6 +18,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private Knockback knockback;
     private Flash flash;
 
+    private float defaultRecoveryTime; // Lưu thời gian hồi phục mặc định
+
     const string HEALTH_SLIDER_TEXT = "Health Slider";
     const string TOWN_TEXT = "Scene1";
     readonly int DEATH_HASH = Animator.StringToHash("Death");
@@ -28,14 +30,13 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();
+
+        defaultRecoveryTime = damageRecoveryTime; // Lưu giá trị ban đầu
     }
 
     private void Start()
     {
-        isDead = false;
-        currentHealth = maxHealth;
-
-        UpdateHealthSlider();
+        ResetPlayerState(); // Reset trạng thái khi game khởi động
     }
 
     private void OnCollisionStay2D(Collision2D other)
@@ -105,5 +106,21 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
+    }
+
+    // ✅ Hàm mới: Reset máu và thời gian hồi phục khi restart game
+    public void ResetPlayerState()
+    {
+        isDead = false;
+        currentHealth = maxHealth;
+        damageRecoveryTime = defaultRecoveryTime;
+        canTakeDamage = true;
+        UpdateHealthSlider();
+    }
+    public void ResetHealth()
+    {
+        isDead = false;
+        currentHealth = maxHealth;
+        UpdateHealthSlider();
     }
 }

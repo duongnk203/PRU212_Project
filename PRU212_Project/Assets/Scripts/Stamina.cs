@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,30 +14,35 @@ public class Stamina : Singleton<Stamina>
     private int maxStamina;
     const string STAMINA_CONTAINER_TEXT = "Stamina Container";
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         base.Awake();
-
         maxStamina = startingStamina;
         CurrentStamina = startingStamina;
     }
 
-    private void Start() {
+    private void Start()
+    {
         staminaContainer = GameObject.Find(STAMINA_CONTAINER_TEXT).transform;
     }
 
-    public void UseStamina() {
+    public void UseStamina()
+    {
         CurrentStamina--;
         UpdateStaminaImages();
     }
 
-    public void RefreshStamina() {
-        if (CurrentStamina < maxStamina) {
+    public void RefreshStamina()
+    {
+        if (CurrentStamina < maxStamina)
+        {
             CurrentStamina++;
         }
         UpdateStaminaImages();
     }
 
-    private IEnumerator RefreshStaminaRoutine() {
+    private IEnumerator RefreshStaminaRoutine()
+    {
         while (true)
         {
             yield return new WaitForSeconds(timeBetweenStaminaRefresh);
@@ -46,19 +50,32 @@ public class Stamina : Singleton<Stamina>
         }
     }
 
-    private void UpdateStaminaImages() {
+    private void UpdateStaminaImages()
+    {
         for (int i = 0; i < maxStamina; i++)
         {
-            if (i <= CurrentStamina - 1) {
+            if (i <= CurrentStamina - 1)
+            {
                 staminaContainer.GetChild(i).GetComponent<Image>().sprite = fullStaminaImage;
-            } else {
+            }
+            else
+            {
                 staminaContainer.GetChild(i).GetComponent<Image>().sprite = emptyStaminaImage;
             }
         }
 
-        if (CurrentStamina < maxStamina) {
+        if (CurrentStamina < maxStamina)
+        {
             StopAllCoroutines();
             StartCoroutine(RefreshStaminaRoutine());
         }
+    }
+
+    // ✅ Hàm mới: Reset stamina khi restart game
+    public void ResetStamina()
+    {
+        StopAllCoroutines(); // Dừng quá trình hồi stamina trước đó
+        CurrentStamina = startingStamina; // Reset về giá trị ban đầu
+        UpdateStaminaImages(); // Cập nhật UI ngay lập tức
     }
 }

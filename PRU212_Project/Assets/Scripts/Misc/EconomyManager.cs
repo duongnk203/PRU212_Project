@@ -10,13 +10,31 @@ public class EconomyManager : Singleton<EconomyManager>
 
     const string COIN_AMOUNT_TEXT = "Gold Amount Text";
 
-    public void UpdateCurrentGold() {
-        currentGold += 1;
+    private void Start()
+    {
+        goldText = GameObject.Find(COIN_AMOUNT_TEXT).GetComponent<TMP_Text>();
+        UpdateGoldUI();
+    }
 
-        if (goldText == null) {
+    public void UpdateCurrentGold()
+    {
+        currentGold += 1;
+        UpdateGoldUI();
+    }
+
+    private void UpdateGoldUI()
+    {
+        if (goldText == null)
+        {
             goldText = GameObject.Find(COIN_AMOUNT_TEXT).GetComponent<TMP_Text>();
         }
-
         goldText.text = currentGold.ToString("D3");
+    }
+
+    // ✅ Hàm mới: Reset Gold khi restart game
+    public void ResetGold()
+    {
+        currentGold = 0; // Đặt lại Gold về 0
+        UpdateGoldUI();  // Cập nhật UI ngay lập tức
     }
 }
