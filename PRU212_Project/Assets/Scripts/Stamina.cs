@@ -1,56 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Quản lý hệ thống thể lực (stamina) của người chơi.
-/// Stamina sẽ giảm khi sử dụng và tự động hồi phục sau một khoảng thời gian.
-/// </summary>
 public class Stamina : Singleton<Stamina>
 {
-    public int CurrentStamina { get; private set; } // Lượng stamina hiện tại của người chơi
+    public int CurrentStamina { get; private set; }
 
-    [SerializeField] private Sprite fullStaminaImage, emptyStaminaImage; // Hình ảnh thể hiện stamina đầy hoặc cạn
-    [SerializeField] private int timeBetweenStaminaRefresh = 3; // Thời gian hồi stamina (giây)
+    [SerializeField] private Sprite fullStaminaImage, emptyStaminaImage;
+    [SerializeField] private int timeBetweenStaminaRefresh = 3;
 
-    private Transform staminaContainer; // Tham chiếu đến UI container chứa các biểu tượng stamina
-    private int startingStamina = 3; // Stamina ban đầu
-    private int maxStamina; // Giới hạn tối đa của stamina
-    const string STAMINA_CONTAINER_TEXT = "Stamina Container"; // Tên object chứa UI stamina trong Scene
+    private Transform staminaContainer;
+    private int startingStamina = 3;
+    private int maxStamina;
+    const string STAMINA_CONTAINER_TEXT = "Stamina Container";
 
-    /// <summary>
-    /// Khởi tạo singleton và thiết lập stamina ban đầu.
-    /// </summary>
     protected override void Awake()
     {
         base.Awake();
-
-        maxStamina = startingStamina; // Đặt giá trị stamina tối đa
-        CurrentStamina = startingStamina; // Đặt giá trị stamina hiện tại bằng stamina ban đầu
+        maxStamina = startingStamina;
+        CurrentStamina = startingStamina;
     }
 
     private void Start()
     {
-        // Tìm kiếm UI container chứa stamina icons trong Scene
         staminaContainer = GameObject.Find(STAMINA_CONTAINER_TEXT).transform;
     }
 
-    /// <summary>
-    /// Giảm stamina khi người chơi sử dụng.
-    /// </summary>
     public void UseStamina()
     {
-        if (CurrentStamina > 0)
-        {
-            CurrentStamina--;
-            UpdateStaminaImages();
-        }
+        CurrentStamina--;
+        UpdateStaminaImages();
     }
 
-    /// <summary>
-    /// Hồi phục stamina nếu chưa đạt mức tối đa.
-    /// </summary>
     public void RefreshStamina()
     {
         if (CurrentStamina < maxStamina)
@@ -60,9 +41,6 @@ public class Stamina : Singleton<Stamina>
         UpdateStaminaImages();
     }
 
-    /// <summary>
-    /// Coroutine tự động hồi phục stamina theo thời gian.
-    /// </summary>
     private IEnumerator RefreshStaminaRoutine()
     {
         while (true)
@@ -72,14 +50,11 @@ public class Stamina : Singleton<Stamina>
         }
     }
 
-    /// <summary>
-    /// Cập nhật hình ảnh stamina trên UI.
-    /// </summary>
     private void UpdateStaminaImages()
     {
         for (int i = 0; i < maxStamina; i++)
         {
-            if (i < CurrentStamina)
+            if (i <= CurrentStamina - 1)
             {
                 staminaContainer.GetChild(i).GetComponent<Image>().sprite = fullStaminaImage;
             }
@@ -89,11 +64,18 @@ public class Stamina : Singleton<Stamina>
             }
         }
 
-        // Nếu chưa đầy stamina, dừng tất cả coroutine cũ và khởi động lại tiến trình hồi stamina
         if (CurrentStamina < maxStamina)
         {
             StopAllCoroutines();
             StartCoroutine(RefreshStaminaRoutine());
         }
+    }
+
+    // ✅ Hàm mới: Reset stamina khi restart game
+    public void ResetStamina()
+    {
+        StopAllCoroutines(); // Dừng quá trình hồi stamina trước đó
+        CurrentStamina = startingStamina; // Reset về giá trị ban đầu
+        UpdateStaminaImages(); // Cập nhật UI ngay lập tức
     }
 }
