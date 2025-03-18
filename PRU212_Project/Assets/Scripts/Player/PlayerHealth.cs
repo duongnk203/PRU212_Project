@@ -89,6 +89,16 @@ public class PlayerHealth : Singleton<PlayerHealth>
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
         SceneManager.LoadScene(TOWN_TEXT);
+        ResetHealth();
+        if (Stamina.Instance != null)
+        {
+            Stamina.Instance.ResetStamina();
+        }
+
+        if (EconomyManager.Instance != null)
+        {
+            EconomyManager.Instance.ResetGold();
+        }
     }
 
     private IEnumerator DamageRecoveryRoutine()

@@ -31,10 +31,14 @@ public class EconomyManager : Singleton<EconomyManager>
         goldText.text = currentGold.ToString("D3");
     }
 
-    // ✅ Hàm mới: Reset Gold khi restart game
     public void ResetGold()
     {
-        currentGold = 0; // Đặt lại Gold về 0
-        UpdateGoldUI();  // Cập nhật UI ngay lập tức
+        currentGold = 0;
+        UpdateGoldUI(); 
+    }
+
+    public int GetGold()
+    {
+        return currentGold;
     }
 }
