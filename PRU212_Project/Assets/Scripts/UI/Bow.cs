@@ -16,12 +16,18 @@ public class Bow : MonoBehaviour, IWeapon
 
     private Animator myAnimator; // Animator của cung để kích hoạt animation bắn
 
+    AudioManager audioManager;
     /// <summary>
     /// Khởi tạo animator khi đối tượng được tạo.
     /// </summary>
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
+        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObject != null)
+        {
+            audioManager = audioObject.GetComponent<AudioManager>();
+        }
     }
 
     /// <summary>
@@ -30,6 +36,23 @@ public class Bow : MonoBehaviour, IWeapon
     /// </summary>
     public void Attack()
     {
+        if (audioManager == null)
+        {
+            GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+            if (audioObject != null)
+            {
+                audioManager = audioObject.GetComponent<AudioManager>();
+            }
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(audioManager.cung);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager is null - Không thể phát âm thanh chém!");
+        }
         // Gửi tín hiệu kích hoạt animation bắn
         myAnimator.SetTrigger(FIRE_HASH);
 

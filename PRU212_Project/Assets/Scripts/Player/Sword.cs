@@ -13,6 +13,8 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] private float swordAttackCD = .5f; // Thời gian hồi chiêu khi chém
     [SerializeField] private WeaponInfo weaponInfo; // Thông tin vũ khí
 
+    AudioManager audioManager;
+
     private Transform weaponCollider; // Collider của vũ khí
     private Animator myAnimator; // Animator để xử lý hoạt ảnh chém
 
@@ -20,6 +22,11 @@ public class Sword : MonoBehaviour, IWeapon
 
     private void Awake()
     {
+        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObject != null)
+        {
+            audioManager = audioObject.GetComponent<AudioManager>();
+        }
         myAnimator = GetComponent<Animator>();
     }
 
@@ -50,13 +57,32 @@ public class Sword : MonoBehaviour, IWeapon
     /// </summary>
     public void Attack()
     {
-        myAnimator.SetTrigger("Attack"); // Kích hoạt animation chém
-        weaponCollider.gameObject.SetActive(true); // Bật collider để kiểm tra va chạm
+        myAnimator.SetTrigger("Attack");
 
-        // Tạo hiệu ứng chém tại vị trí đã xác định
+        if (audioManager == null)
+        {
+            GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+            if (audioObject != null)
+            {
+                audioManager = audioObject.GetComponent<AudioManager>();
+            }
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(audioManager.knife);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager is null - Không thể phát âm thanh chém!");
+        }
+
+        weaponCollider.gameObject.SetActive(true);
+
         slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
         slashAnim.transform.parent = this.transform.parent;
     }
+
 
     /// <summary>
     /// Sự kiện khi hoạt ảnh chém kết thúc, vô hiệu hóa collider vũ khí.
