@@ -12,12 +12,18 @@ public class Staff : MonoBehaviour, IWeapon
     [SerializeField] private Transform magicLaserSpawnPoint; // Vị trí xuất hiện của laser phép thuật
 
     private Animator myAnimator;
+    AudioManager audioManager;
 
     readonly int ATTACK_HASH = Animator.StringToHash("Attack"); // Hash giá trị animation "Attack" để tối ưu hiệu suất
 
     private void Awake()
     {
         myAnimator = GetComponent<Animator>(); // Lấy Animator của cây trượng
+        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObject != null)
+        {
+            audioManager = audioObject.GetComponent<AudioManager>();
+        }
     }
 
     private void Update()
@@ -31,6 +37,23 @@ public class Staff : MonoBehaviour, IWeapon
     /// </summary>
     public void Attack()
     {
+        if (audioManager == null)
+        {
+            GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+            if (audioObject != null)
+            {
+                audioManager = audioObject.GetComponent<AudioManager>();
+            }
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(audioManager.laze);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager is null - Không thể phát âm thanh chém!");
+        }
         myAnimator.SetTrigger(ATTACK_HASH); // Kích hoạt animation tấn công
     }
 

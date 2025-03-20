@@ -15,12 +15,18 @@ public class Bow : MonoBehaviour, IWeapon
     private readonly int FIRE_HASH = Animator.StringToHash("Fire"); // Hash animation "Fire" để tối ưu hiệu suất
 
     private Animator myAnimator; // Animator của cung để kích hoạt animation bắn
+    AudioManager audioManager;
 
     /// <summary>
     /// Khởi tạo animator khi đối tượng được tạo.
     /// </summary>
     private void Awake()
     {
+        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObject != null)
+        {
+            audioManager = audioObject.GetComponent<AudioManager>();
+        }
         myAnimator = GetComponent<Animator>();
     }
 
@@ -30,6 +36,23 @@ public class Bow : MonoBehaviour, IWeapon
     /// </summary>
     public void Attack()
     {
+        if (audioManager == null)
+        {
+            GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+            if (audioObject != null)
+            {
+                audioManager = audioObject.GetComponent<AudioManager>();
+            }
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(audioManager.knife);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager is null - Không thể phát âm thanh chém!");
+        }
         // Gửi tín hiệu kích hoạt animation bắn
         myAnimator.SetTrigger(FIRE_HASH);
 

@@ -23,6 +23,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     const string HEALTH_SLIDER_TEXT = "Health Slider";
     const string TOWN_TEXT = "Scene1";
     readonly int DEATH_HASH = Animator.StringToHash("Death");
+    AudioManager audioManager;
 
     protected override void Awake()
     {
@@ -63,6 +64,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         if (!canTakeDamage) { return; }
 
         ScreenShakeManager.Instance.ShakeScreen();
+        PlaySound(audioManager?.vacham);
         knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
         StartCoroutine(flash.FlashRoutine());
         canTakeDamage = false;
@@ -76,7 +78,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
         if (currentHealth <= 0 && !isDead)
         {
-            isDead = true;
+            isDead = true; 
+            PlaySound(audioManager?.dead);
             Destroy(ActiveWeapon.Instance.gameObject);
             currentHealth = 0;
             GetComponent<Animator>().SetTrigger(DEATH_HASH);
@@ -132,5 +135,32 @@ public class PlayerHealth : Singleton<PlayerHealth>
         isDead = false;
         currentHealth = maxHealth;
         UpdateHealthSlider();
+    }
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioManager == null)
+        {
+            FindAudioManager();
+        }
+        if (audioManager != null)
+        {
+            audioManager.PlaySFX(clip);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager is still null when trying to play sound!");
+        }
+    }
+    private void FindAudioManager()
+    {
+        GameObject audioObject = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObject != null)
+        {
+            audioManager = audioObject.GetComponent<AudioManager>();
+        }
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager is missing or not assigned correctly!");
+        }
     }
 }
